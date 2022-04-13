@@ -1,18 +1,19 @@
 package education.cccp.mobile.fragment;
 
+import static education.cccp.mobile.fragment.R.id.mainFrameLayOutId;
 import static education.cccp.mobile.fragment.R.id.menuItemFirstFragId;
-import static education.cccp.mobile.fragment.R.id.mainFrameId;
 import static education.cccp.mobile.fragment.R.id.menuItemSecondFragId;
 import static education.cccp.mobile.fragment.R.layout.activity_main;
 import static education.cccp.mobile.fragment.R.menu.main_menu;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @SuppressWarnings("FieldCanBeLocal")
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         secondFragment = new SecondFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(mainFrameId, firstFragment)
+                .add(mainFrameLayOutId, firstFragment)
                 .commit();
     }
 
@@ -45,19 +46,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case menuItemFirstFragId:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(mainFrameId, firstFragment)
-                        .commit();
+                if (!firstFragment.isVisible())
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(mainFrameLayOutId, firstFragment)
+                            .addToBackStack(null)
+                            .commit();
                 return true;
             case menuItemSecondFragId:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(mainFrameId, secondFragment)
-                        .commit();
+                if (!secondFragment.isVisible())
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(mainFrameLayOutId, secondFragment)
+                            .addToBackStack(null)
+                            .commit();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void onClickCreateFirstItemMenu(MenuItem item) {
+        Log.d(this.getClass().getSimpleName(),"onClickCreateFirstItemMenu");
     }
 }

@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuItemFirstFragId"
-        android:title="First Fragment" />
+        android:title="First Fragment"
+        android:icon="@android:drawable/ic_input_add"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuItemSecondFragId"
         android:title="Second Fragment" />
