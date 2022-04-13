@@ -7,7 +7,7 @@
     tools:context=".MainActivity" >
 
     <FrameLayout
-        android:id="@+id/secondFrameId"
+        android:id="@+id/mainFrameId"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
