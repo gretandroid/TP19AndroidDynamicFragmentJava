@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class FirstFragment extends Fragment {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private FirstViewModel mViewModel;
 
     public FirstFragment() {
